@@ -1,10 +1,6 @@
 ---
-title: "Welcome to Jekyll!"
-date: 2020-06-27 18:26:28 -0400
-categories: Test
----
-
-Test
+title: "200627 TIL"
+categories: TIL
 
 ---
 
