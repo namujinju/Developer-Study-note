@@ -2,7 +2,7 @@
 title: '나무진주의 개발 공부'
 tagline: '개발 공부'
 description: 'A Jekyll theme adapted from <a href="http://lanyon.getpoole.com/" target="_blank">Lanyon</a>. Made by <a href="http://codinfox.github.io" target="_blank">@codinfox</a>.'
-baseurl: "/lanyon"
+baseurl: ""
 url: http://namujinju.github.io
 logo: '/public/logo.png'
 
