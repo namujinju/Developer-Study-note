@@ -5,16 +5,16 @@ def collatz(n):
         if n % 2 == 0:
             n /= 2
         else:
-            n = n * 3 + 1        
+            n = n * 3 + 1
         counter += 1
-        # print("{} {}번째".format(int(n), counter))
+        print("{} {}번째".format(int(n), counter))
     return "{}에서 시작하면 {}번을 거쳐 1이 됩니다".format(m, counter)
 
 n = int(input())
-# n = 5
 
-for i in range(1, n + 1):
-    print(collatz(i))
-# print(collatz(n))
+#for i in range(1, n + 1): # n이 어떤 과정을 거쳐 1이 되는지 확인
+#    print(collatz(i))
+
+print(collatz(n)) # n까지의 자연수들이 모두 콜라츠 추측에 부합하는지 확인
 
 
