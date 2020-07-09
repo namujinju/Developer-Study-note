@@ -24,7 +24,7 @@ def vowels_consonants(s):
         else:
             output.append(s_consonants.pop(0)) # 자음인 경우 오름차순 된 리스트의 맨 앞을 출력
 
-    return output
+    return "".join(output)
 
 
 # 테스트와 출력
