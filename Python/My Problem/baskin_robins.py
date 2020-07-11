@@ -86,12 +86,16 @@ def baskin_robins():
 
 while True:
     baskin_robins()
-    win_rate = win / (win + lose) * 100
+    if win == 0:
+        win_rate = 0
+    else:
+        win_rate = win / (win + lose) * 100
     print("승률: {}%".format(win_rate))
     print()
-
+    
     if turn == 3:
         break
+    
 
 print("끝")
 
