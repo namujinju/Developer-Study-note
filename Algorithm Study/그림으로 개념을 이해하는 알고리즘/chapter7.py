@@ -85,7 +85,7 @@ print("최단 경로의 가중치:", costs["fin"]) # costs hash table의 fin키 
 output = ["fin"]
 key = "fin"
 
-while key is not "start": # start에 도달하면 끝
+while key != "start": # start에 도달하면 끝
     key = parents[key]
     output.append(key)
 
@@ -97,7 +97,7 @@ output = output[::-1]
 print("최단 경로:", end=" ")
 for i in output:
     print(i, end=" ")
-    if i is not "fin":
+    if i != "fin":
         print(end="--- ")
 
 
