@@ -1,5 +1,6 @@
 # Level 2 큰 수 만들기
 # 시간 복잡도, 더 효율적인 코드 만들기
+# 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
 
 def solution(number, k):
     answer = [i for i in number]
