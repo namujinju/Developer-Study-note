@@ -173,41 +173,41 @@ def main():
 
     # Import test data(6027행, 13열)
     # pandas로 csv 파일을 읽고 dataframe으로 변환해 가져오기
-    train_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_train.csv', sep=",", engine='python', header = None)
-    dev_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_dev.csv', sep=",", engine='python', header = None)
-    test_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_test.csv', sep=",", engine='python', header = None)
-    train_data, train_labels, dev_data, dev_labels, test_data, test_labels, scale_factor = import_data(train_dataframe, dev_dataframe, test_dataframe)
+    # train_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_train.csv', sep=",", engine='python', header = None)
+    # dev_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_dev.csv', sep=",", engine='python', header = None)
+    # test_dataframe = pandas.read_csv(DATASET_PATH + '목포_2013년_test.csv', sep=",", engine='python', header = None)
+    # train_data, train_labels, dev_data, dev_labels, test_data, test_labels, scale_factor = import_data(train_dataframe, dev_dataframe, test_dataframe)
     
 
-    time_steps = 1
-    assert(train_data.shape[0] % time_steps == 0) # 1시간 마다, 시간 단위가 정수인지 확인
+    # time_steps = 1
+    # assert(train_data.shape[0] % time_steps == 0) # 1시간 마다, 시간 단위가 정수인지 확인
 
-    X_train = np.reshape(train_data, (train_data.shape[0] // time_steps, time_steps, train_data.shape[1])) #(7008,1,5)
-    X_dev = np.reshape(dev_data, (dev_data.shape[0] // time_steps, time_steps, dev_data.shape[1]))
-    X_test = np.reshape(test_data, (test_data.shape[0] // time_steps, time_steps, test_data.shape[1]))
-    Y_train = np.reshape(train_labels, (train_labels.shape[0] // time_steps, time_steps, 1)) #(7008,1,1)
-    Y_dev = np.reshape(dev_labels, (dev_labels.shape[0] // time_steps, time_steps, 1))
-    Y_test = np.reshape(test_labels, (test_labels.shape[0] // time_steps, time_steps, 1))
+    # X_train = np.reshape(train_data, (train_data.shape[0] // time_steps, time_steps, train_data.shape[1])) #(7008,1,5)
+    # X_dev = np.reshape(dev_data, (dev_data.shape[0] // time_steps, time_steps, dev_data.shape[1]))
+    # X_test = np.reshape(test_data, (test_data.shape[0] // time_steps, time_steps, test_data.shape[1]))
+    # Y_train = np.reshape(train_labels, (train_labels.shape[0] // time_steps, time_steps, 1)) #(7008,1,1)
+    # Y_dev = np.reshape(dev_labels, (dev_labels.shape[0] // time_steps, time_steps, 1))
+    # Y_test = np.reshape(test_labels, (test_labels.shape[0] // time_steps, time_steps, 1))
 
-    model = build_model('glorot_uniform', 'adam')
+    # model = build_model('glorot_uniform', 'adam')
 
 #%%
     #표준 vanilla LSTM 모델
 
-    model_fit_epochs = 100 # epoch: 전체 Dataset을 학습시키는 정도
-    print("X_train shape: ",X_train.shape, " Y_train shape: ",Y_train.shape)
+    # model_fit_epochs = 1 # epoch: 전체 Dataset을 학습시키는 정도
+    # print("X_train shape: ",X_train.shape, " Y_train shape: ",Y_train.shape)
     
-    model.fit(
-        X_train, Y_train,
-        batch_size = 16, epochs = model_fit_epochs)
+    # model.fit(
+    #     X_train, Y_train,
+    #     batch_size = 16, epochs = model_fit_epochs) # train set만 모델에 fit 시킴
     
-    trainset_predicted = model.predict(X_train)
-    devset_predicted = model.predict(X_dev)
-    testset_predicted = model.predict(X_test)
+    # trainset_predicted = model.predict(X_train)
+    # devset_predicted = model.predict(X_dev)
+    # testset_predicted = model.predict(X_test)
 
-    print("Train MSE: ", mse(trainset_predicted, Y_train) * scale_factor * scale_factor)
-    print("Dev MSE: ", mse(devset_predicted, Y_dev) * scale_factor * scale_factor)
-    print("Test MSE: ", mse(testset_predicted, Y_test) * scale_factor * scale_factor)
+    # print("Train MSE: ", mse(trainset_predicted, Y_train) * scale_factor * scale_factor)
+    # print("Dev MSE: ", mse(devset_predicted, Y_dev) * scale_factor * scale_factor)
+    # print("Test MSE: ", mse(testset_predicted, Y_test) * scale_factor * scale_factor)
     
 
     # #Adaboost model (ensemble learning)
@@ -224,8 +224,8 @@ def main():
     # print("Dev MSE: ", mse(devset_predicted, Y_dev) * scale_factor * scale_factor)
     # print("Test MSE: ", mse(testset_predicted, Y_test) * scale_factor * scale_factor)
 
-    # # K-fold cross validation (K = 10):
-    # kf = KFold(n_splits=10, shuffle=True)
+    # K-fold cross validation (K = 10):
+    # kf = KFold(n_splits=5, shuffle=True)
     # # Loop through the indices the split() method returns
     # for index, (train_indices, val_indices) in enumerate(kf.split(X_train, Y_train)):
     #     print("Training on fold " + str(index + 1) + "/10...")
@@ -279,42 +279,55 @@ def main():
     #         file.write("%.7f" % prediction[i][0][0])
     #         file.write('\n')
 
-    trainset_predicted = model.predict(X_train) * scale_factor
-    devset_predicted = model.predict(X_dev) * scale_factor
-    testset_predicted = model.predict(X_test) * scale_factor
+    # trainset_predicted = model.predict(X_train) * scale_factor
+    # devset_predicted = model.predict(X_dev) * scale_factor
+    # testset_predicted = model.predict(X_test) * scale_factor
 
-    write_to_csv(trainset_predicted,'my_trainset_prediction.csv')
-    write_to_csv(devset_predicted,'my_devset_prediction.csv')
-    write_to_csv(testset_predicted, 'my_testset_prediction.csv')
+    # write_to_csv(trainset_predicted,'my_trainset_prediction.csv')
+    # write_to_csv(devset_predicted,'my_devset_prediction.csv')
+    # write_to_csv(testset_predicted, 'my_testset_prediction.csv')
 
 
 #%%
 # 현재 모델을 2014년에 적용    
-    # test_dataframe = pandas.read_csv(DATASET_PATH + '목포 2014년.csv', sep=",", engine='python', header = None)
-    # train_data, train_labels, dev_data, dev_labels, test_data, test_labels, scale_factor = import_data(test_dataframe, test_dataframe, test_dataframe)
+    train_dataframe = pandas.read_csv(DATASET_PATH + '목포 2013년.csv', sep=",", engine='python', header = None)
+    train_dataframe = train_dataframe.iloc[:7884, :] # 8760 * 0.9
+    dev_dataframe = train_dataframe.iloc[7884:, :] # 2013년의 90%를 trainset로, 10%를 devset으로 
+    test_dataframe = pandas.read_csv(DATASET_PATH + '목포 2014년.csv', sep=",", engine='python', header = None)
+    test_dataframe = test_dataframe.iloc[:20, :] # 1년 8760개의 데이터 중 1월만 가져옴
+    train_data, train_labels, dev_data, dev_labels, test_data, test_labels, scale_factor = import_data(train_dataframe, test_dataframe, test_dataframe)
 
-    # time_steps = 1
-    # assert(train_data.shape[0] % time_steps == 0) # 1시간 마다, 시간 단위가 정수인지 확인
+    time_steps = 1
+    assert(train_data.shape[0] % time_steps == 0) # 1시간 마다, 시간 단위가 정수인지 확인
 
-    # X_train = np.reshape(train_data, (train_data.shape[0] // time_steps, time_steps, train_data.shape[1])) #(7008,1,5)
-    # X_dev = np.reshape(dev_data, (dev_data.shape[0] // time_steps, time_steps, dev_data.shape[1]))
-    # X_test = np.reshape(test_data, (test_data.shape[0] // time_steps, time_steps, test_data.shape[1]))
-    # Y_train = np.reshape(train_labels, (train_labels.shape[0] // time_steps, time_steps, 1)) #(7008,1,1)
-    # Y_dev = np.reshape(dev_labels, (dev_labels.shape[0] // time_steps, time_steps, 1))
-    # Y_test = np.reshape(test_labels, (test_labels.shape[0] // time_steps, time_steps, 1))
+    X_train = np.reshape(train_data, (train_data.shape[0] // time_steps, time_steps, train_data.shape[1])) #(7008,1,5)
+    X_dev = np.reshape(dev_data, (dev_data.shape[0] // time_steps, time_steps, dev_data.shape[1]))
+    X_test = np.reshape(test_data, (test_data.shape[0] // time_steps, time_steps, test_data.shape[1]))
+    Y_train = np.reshape(train_labels, (train_labels.shape[0] // time_steps, time_steps, 1)) #(7008,1,1)
+    Y_dev = np.reshape(dev_labels, (dev_labels.shape[0] // time_steps, time_steps, 1))
+    Y_test = np.reshape(test_labels, (test_labels.shape[0] // time_steps, time_steps, 1))
 
-    # model = build_model('glorot_uniform', 'adam')
+    model = build_model('glorot_uniform', 'adam')
 
-    # model_fit_epochs = 100 # epoch: 전체 Dataset을 학습시키는 정도
-    # print("X_train shape: ",X_train.shape, " Y_train shape: ",Y_train.shape)
+    model_fit_epochs = 100 # epoch: 전체 Dataset을 학습시키는 정도
+    print("X_train shape: ",X_train.shape, " Y_train shape: ",Y_train.shape)
     
-    # model.fit(
-    #     X_train, Y_train,
-    #     batch_size = 16, epochs = model_fit_epochs)
+    model.fit(
+        X_train, Y_train,
+        batch_size = 16, epochs = model_fit_epochs)
 
-    # testset_predicted = model.predict(X_test) * scale_factor
 
-    # write_to_csv(testset_predicted, 'my_testset_prediction_2014.csv')
+    trainset_predicted = model.predict(X_train)
+    devset_predicted = model.predict(X_dev)
+    testset_predicted = model.predict(X_test)
+
+    print("Train MSE: ", mse(trainset_predicted, Y_train) * scale_factor * scale_factor)
+    print("Dev MSE: ", mse(devset_predicted, Y_dev) * scale_factor * scale_factor)
+    print("Test MSE: ", mse(testset_predicted, Y_test) * scale_factor * scale_factor)
+
+    testset_predicted = model.predict(X_test) * scale_factor
+    
+    write_to_csv(testset_predicted, 'my_testset_prediction_2014.csv')
 
     return
 

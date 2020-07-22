@@ -46,10 +46,10 @@ plt.show()
 
 # test
 dataset = test_dataframe.values
-x = dataset[100:300,0]
-y1 = dataset[100:300,5]
+x = dataset[100:200,0]
+y1 = dataset[100:200,5]
 dataset = test_prediction_dataframe.values
-y2 = dataset[100:300,0]
+y2 = dataset[100:200,0]
 # y3 = y1-y2
 
 plt.plot(x, y1, label="observed")
