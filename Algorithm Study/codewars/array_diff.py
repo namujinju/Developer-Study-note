@@ -1,7 +1,0 @@
-def array_diff(a, b):
-    return [x for x in a if x not in b]
-
-
-a = [1,2,2,2,2,3]
-b = [2]
-print(array_diff(a, b))
