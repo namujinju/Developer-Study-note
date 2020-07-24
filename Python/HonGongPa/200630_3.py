@@ -33,7 +33,6 @@ print("::".join(str(i) for i in numbers))
 list_a = [str(i) for i in numbers]
 print(list_a)
 
-print(2 ** 29)
 
 
 print()

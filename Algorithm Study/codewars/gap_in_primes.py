@@ -12,5 +12,5 @@ def gap(g, m, n):
                 else:
                     list_a.pop(0)
                     
-print(gap(10, 300, 400))
+print(gap(4, 130, 200))
 
