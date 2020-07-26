@@ -5,11 +5,11 @@ hq_arr = []
 n = int(input())  # 연산 갯수
 
 for _ in range(n):
-    i = int(sys.stdin.readline())  # https://www.acmicpc.net/blog/view/56
+    i = int(sys.stdin.readline())
     if i:
-        hq.heappush(hq_arr, abs(i))
+        hq.heappush(hq_arr, (abs(i), i))
     else:
         if hq_arr:
-            print(hq.heappop(hq_arr))
+            print(hq.heappop(hq_arr)[1])
         else:
             print(0)
