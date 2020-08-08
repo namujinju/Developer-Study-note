@@ -8,4 +8,5 @@ def tribonacci(signature, n):
 
     return list(memo.values())[:n]
 
-print(tribonacci([1, 1, 1], 1))
+
+print(tribonacci([1, 5, 7], 9))
