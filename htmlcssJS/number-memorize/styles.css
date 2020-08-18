@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  background-color: skyblue;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.hidden {
+  opacity: 0;
+}
