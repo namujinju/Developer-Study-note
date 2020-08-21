@@ -11,5 +11,6 @@ def foo():
 
 c = foo()
 print(c(1), c(2), c(3))
+print(c.__closure__)
 
 # 1 3 6
