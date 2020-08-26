@@ -62,7 +62,7 @@ class Solution:
             # 각 root를 훑을 때 그 root의 최대 길이 구하기
             ans = max(ans, leftLength + rightLength)
 
-            return max(leftLength, rightLength) + 1  # 훑고 있는 root의 최대 깊이 구하기
+            return max(leftLength, rightLength) + 1  # 훑고 있는 root의 최대 깊이 return
         maxLength(root)
 
         return ans
