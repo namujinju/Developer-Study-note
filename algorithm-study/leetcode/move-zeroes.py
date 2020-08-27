@@ -1,12 +1,12 @@
-# class Solution:
-#     def moveZeroes(self, nums: List[int]) -> None:
-#         """
-#         Do not return anything, modify nums in-place instead.
-#         """
-#         for i in nums:
-#             if not i:
-#                 nums.remove(i)
-#                 nums.append(0)
+class Solution:
+    def moveZeroes(self, nums):
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        for i in nums:
+            if not i:
+                nums.remove(i)
+                nums.append(0)
 
 # def moveZeroes(nums):
 
@@ -16,7 +16,7 @@
 # nums = [0, 1, 0, 3, 12]
 # print(moveZeroes(nums))
 
-def moveZeroes(self, nums: List[int]) -> None:
+def moveZeroes(nums):
     """
     Do not return anything, modify nums in-place instead.
     """

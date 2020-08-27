@@ -1,4 +1,4 @@
-(a, b, c) = (1, 2, 3)
+nums = [0, 1, 2, 3, 4, 5]
+n = 3
 
-a, b, c = b, c, a
-print(a, b, c)
+print([nums[i//2+n*(i % 2)] for i in range(len(nums))])

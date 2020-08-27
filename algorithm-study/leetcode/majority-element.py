@@ -4,6 +4,7 @@ from collections import Counter
 def majorityElement(nums):
     numsObj = {}
     n = len(nums)
+
     for i in nums:
         if i in numsObj:
             numsObj[i] += 1
