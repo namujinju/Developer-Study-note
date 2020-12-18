@@ -15,5 +15,5 @@ def bin_count(n, ans=0):
         return bin_count(n, ans+1)
 
 # Test
-n = 4703248792347
+n = 47
 bin_count(n)
