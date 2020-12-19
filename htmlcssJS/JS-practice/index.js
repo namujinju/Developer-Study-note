@@ -1,15 +1,15 @@
 //slice
 let arr1 = [1, 2, 3, 4, 5, 6];
 let arr2 = arr1.slice(2, 5);
-console.log(arr1);
-console.log(arr2);
-// slice는 잘라서 가져온다는 개념, 원본은 보존
+console.log(arr1); // [1, 2, 3, 4, 5, 6]
+console.log(arr2); // [3, 4, 5]
+// slice는 원본 보존
 
 //splice
 let arr3 = arr1.splice(2, 2, "a", "b", "c");
-console.log(arr1);
-console.log(arr3);
-//splice는 잘라서 원본을 없앤다는 개념, 원본 변경
+console.log(arr1); // [1, 2, "a", "b", "c", 5, 6]
+console.log(arr3); // [3, 4]
+//splice는 원본 변경
 
 //push, pop
 const apple = ["a", "p", "p", "l", "e"];
