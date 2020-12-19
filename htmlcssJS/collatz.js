@@ -15,8 +15,6 @@ function collatz(n) {
   counter = 0;
 }
 
-for (var i = 1; i <= 100; i++) {
+for (var i = 1; i <= 10000; i++) {
   collatz(i);
 }
-
-// 1이 될 때까지 반복
